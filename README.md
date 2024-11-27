@@ -12,3 +12,56 @@
 ## 2. uml图
 
 <img src = "UML.jpg" alt = "uml图">
+
+## 3. 关键细节
+
+### 3-1 关于未发生碰撞提早结束游戏的问题
+
+实现code:
+```
+if (!isChecking)
+{
+    isChecking = true;
+    Invoke("ResetArrowSpawnFlag", 1.8f);
+    CheckGameStatus();
+}
+void ResetArrowSpawnFlag()
+{
+    isChecking = false;
+}
+
+```
+下面是对这段代码的详细解释：
+
+1. **条件判断 `if (!isChecking)`**：
+   - 这行判断 `isChecking` 是否为 `false`，即当前没有正在进行“检查”操作。如果 `isChecking` 为 `false`，代码会执行大括号内的内容。如果 `isChecking` 为 `true`，说明当前正在进行某些检查操作，因此不会执行大括号内的代码。
+
+2. **`isChecking = true;`**：
+   - 将 `isChecking` 设置为 `true`，表示开始进行检查。这样做的目的是防止在检查过程中再次触发检查，确保只有一次检查在进行。
+
+3. **`Invoke("ResetArrowSpawnFlag", 1.8f);`**：
+   - `Invoke` 是 Unity 中的一种方法，用于延迟调用某个函数。这里的 `"ResetArrowSpawnFlag"` 是要调用的函数的名称，`1.8f` 是延迟的时间（单位为秒）。在 1.8 秒后，`ResetArrowSpawnFlag` 函数会被自动调用。
+
+4. **`CheckGameStatus();`**：
+   - 调用 `CheckGameStatus()` 函数，通常这个函数用来检查游戏的某个状态，比如是否可以生成箭，或者是否满足某个条件来触发某个事件。具体内容取决于 `CheckGameStatus()` 函数的实现。
+
+5. **`void ResetArrowSpawnFlag()`**：
+   - 这是一个定义了 `ResetArrowSpawnFlag` 函数的部分，该函数没有参数且返回类型为 `void`，表示没有返回值。
+
+6. **`isChecking = false;`**：
+   - 在 `ResetArrowSpawnFlag` 函数中，将 `isChecking` 设置为 `false`，表示检查操作已经完成，可以允许下一次检查操作的触发。
+
+### 总结：
+
+- **功能**：这段代码的目的是防止在检查期间重复触发某个操作，利用 `isChecking` 来确保只有一个检查操作正在进行。通过 `Invoke` 方法，延迟 1.8 秒后调用 `ResetArrowSpawnFlag` 函数，将 `isChecking` 设置为 `false`，允许下一次操作的开始。
+  
+- **流程**：
+  - 当 `isChecking` 为 `false` 时，开始执行检查操作并将 `isChecking` 设置为 `true`。
+  - 调用 `CheckGameStatus()` 来检查游戏状态。
+  - 延迟 1.8 秒后，调用 `ResetArrowSpawnFlag()`，将 `isChecking` 设置为 `false`，以便后续操作可以继续进行。
+
+这个机制通常用于控制某个频繁操作（如生成箭、游戏状态检查等）在一定时间内只能执行一次，避免重复执行造成的逻辑错误或性能问题。
+
+### 3-2 跟踪箭的实现
+
+
