@@ -11,4 +11,4 @@
 
 ## 2. uml图
 
-<img=
+<img src = "uml.jpg" alt = "uml图">
