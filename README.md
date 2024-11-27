@@ -64,4 +64,31 @@ void ResetArrowSpawnFlag()
 
 ### 3-2 跟踪箭的实现
 
+实现code：
+```
+    public override void Start()
+    {
+        float velocityz = force.magnitude;
+        // make it parents is null to sperate from factory
+        this.MgameObject.transform.parent = null;
+
+        this.MgameObject.GetComponent<Rigidbody>().useGravity = false;
+        
+
+        Vector3 direction = destination - this.MgameObject.transform .position;
+
+        float distancex = destination.x - this.MgameObject.transform.position.x;
+        float distancey = destination.y - this.MgameObject.transform.position.y;
+        float distancez = destination.z - this.MgameObject.transform.position.z;
+
+        float time = distancez / velocityz;
+
+        float velocityx = distancex / time;
+        float velocityy = distancey / time;
+        
+        Vector3 ultimatevelocity = new Vector3(velocityx, velocityy, velocityz);
+
+        this.MgameObject.GetComponent<Rigidbody>() .velocity = ultimatevelocity;
+    }
+```
 
