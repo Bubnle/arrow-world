@@ -164,3 +164,16 @@ this.MgameObject.GetComponent<Rigidbody>().velocity = ultimatevelocity;
 6. 设置箭的速度，使其能够精确地飞向目标。
 
 这样一来，箭就能够自动计算和调整速度，保证准确飞向指定的目标位置，实现了一个简单的追踪箭的效果。
+
+### 3-3 关于target-prefab的细节
+
+首先这个prefab 是由五个环构成的，再一起放在一个空物体中最后形成了一个预制体,而且由于箭矢速度较快，所以每个环之间要有一定距离
+
+<img src="target.jpg" alt="target">
+
+
+
+
+需要注意的是因为箭矢的速度较快，所以要将其中的**fixed time 设置更小才能快速当collider detection时候能快速实现停止效果与音效**
+
+<img src="setting.jpg" alt="setting">
