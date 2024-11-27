@@ -183,3 +183,6 @@ this.MgameObject.GetComponent<Rigidbody>().velocity = ultimatevelocity;
 此外不需要给这些设置Rigidbody刚体这个组件，Rigidbody只需给箭矢添加即可！
 
 <img src="setting3.jpg" alt="setting3">
+
+## 4. 视频demo
+https://www.bilibili.com/video/BV1PfBXYZEZP/?vd_source=7a623e8d2983e451b1ad0356dd703610
