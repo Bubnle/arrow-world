@@ -172,8 +172,14 @@ this.MgameObject.GetComponent<Rigidbody>().velocity = ultimatevelocity;
 <img src="target.jpg" alt="target">
 
 
-
-
-需要注意的是因为箭矢的速度较快，所以要将其中的**fixed time 设置更小才能快速当collider detection时候能快速实现停止效果与音效**
+需要注意的是因为箭矢的速度较快，所以要将其中的**fixed timestep 设置更小才能快速当collider detection时候能快速实现停止效果与音效**
 
 <img src="setting.jpg" alt="setting">
+
+脚本的添加只需要给target的子物体添加即可，还有RingData.cs只需要给子物体添加
+
+<img src="setting2.jpg" alt="setting2">
+
+此外不需要给这些设置Rigidbody刚体这个组件，Rigidbody只需给箭矢添加即可！
+
+<img src="setting3.jpg" alt="setting3">
